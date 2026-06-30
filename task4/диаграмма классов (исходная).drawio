@@ -1,0 +1,52 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Страница-1" id="K_q5LtJtx1gShllLQUoA">
+    <mxGraphModel dx="1288" dy="823" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="BookStatus" parent="1" style="html=1;whiteSpace=wrap;overflow=hidden;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" value="&lt;b&gt;&amp;lt;enum&amp;gt;&lt;br&gt;BookStatus&lt;/b&gt;&lt;hr&gt;IN_STOCK&lt;br&gt;OUT_OF_STOCK" vertex="1">
+          <mxGeometry height="90" width="160" x="80" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="OrderStatus" parent="1" style="html=1;whiteSpace=wrap;overflow=hidden;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" value="&lt;b&gt;&amp;lt;enum&amp;gt;&lt;br&gt;OrderStatus&lt;/b&gt;&lt;hr&gt;NEW&lt;br&gt;COMPLETED&lt;br&gt;CANCELED" vertex="1">
+          <mxGeometry height="100" width="160" x="600" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Book" parent="1" style="html=1;whiteSpace=wrap;overflow=hidden;align=left;spacingLeft=10;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;b&gt;Book&lt;/b&gt;&lt;hr&gt;+ title: String&lt;br&gt;+ status: BookStatus&lt;br&gt;+ hasRequest: boolean&lt;hr&gt;+ Book(title: String, status: BookStatus)" vertex="1">
+          <mxGeometry height="120" width="240" x="40" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="Order" parent="1" style="html=1;whiteSpace=wrap;overflow=hidden;align=left;spacingLeft=10;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;b&gt;Order&lt;/b&gt;&lt;hr&gt;+ book: Book&lt;br&gt;+ status: OrderStatus&lt;hr&gt;+ Order(book: Book)" vertex="1">
+          <mxGeometry height="110" width="240" x="560" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="BookStore" parent="1" style="html=1;whiteSpace=wrap;overflow=hidden;align=left;spacingLeft=10;spacingTop=4;fillColor=#d5e8d4;strokeColor=#82b366;" value="&lt;b&gt;BookStore&lt;/b&gt;&lt;hr&gt;&lt;hr&gt;+ addBook(book: Book): void&lt;br&gt;+ writeOffBook(book: Book): void&lt;br&gt;+ requestBook(book: Book): void&lt;br&gt;+ createOrder(book: Book): Order&lt;br&gt;+ changeOrderStatus(order: Order, newStatus: OrderStatus): void" vertex="1">
+          <mxGeometry height="140" width="380" x="230" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="edge1" edge="1" parent="1" source="Book" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;dashed=1;" target="BookStatus">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge2" edge="1" parent="1" source="Order" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;dashed=1;" target="OrderStatus">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge3" edge="1" parent="1" source="Order" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=diamondThin;endFill=0;" target="Book">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="490" y="280" />
+              <mxPoint x="490" y="280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge4" edge="1" parent="1" source="BookStore" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;dashed=1;" target="Book">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge5" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;dashed=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="430" y="380" />
+              <mxPoint x="700" y="380" />
+            </Array>
+            <mxPoint x="430" y="420" as="sourcePoint" />
+            <mxPoint x="700" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
