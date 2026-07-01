@@ -1,0 +1,56 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Страница-1" id="hZXrBmw6dxHnGUBPA_V0">
+    <mxGraphModel dx="1288" dy="824" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Class_BookStore" parent="1" style="shape=rectangle;verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;BookStore&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- books: List&amp;lt;Book&amp;gt;&lt;br&gt;- orders: List&amp;lt;Order&amp;gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ addBook(book: Book)&lt;br&gt;+ writeOffBook(book: Book)&lt;br&gt;+ requestBook(book: Book)&lt;br&gt;+ createOrder(book: Book, customerName: String): Order&lt;br&gt;+ changeOrderStatus(order: Order, newStatus: OrderStatus, date: LocalDate)&lt;br&gt;+ printBooks(comparator: Comparator)&lt;br&gt;+ printOrders(comparator: Comparator)&lt;br&gt;+ printRequests(comparator: Comparator)&lt;br&gt;+ printCompletedOrdersStats(start: LocalDate, end: LocalDate)&lt;br&gt;+ printStaleBooks(currentDate: LocalDate)&lt;br&gt;+ printOrderDetails(order: Order)&lt;br&gt;+ printBookDescription(book: Book)&lt;/p&gt;" vertex="1">
+          <mxGeometry height="270" width="390" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Class_Book" parent="1" style="shape=rectangle;verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Book&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ title: String&lt;br&gt;+ status: BookStatus&lt;br&gt;+ requestCount: int&lt;br&gt;+ price: int&lt;br&gt;+ publicationDate: LocalDate&lt;br&gt;+ arrivalDate: LocalDate&lt;br&gt;+ description: String&lt;/p&gt;" vertex="1">
+          <mxGeometry height="150" width="230" x="580" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Class_Order" parent="1" style="shape=rectangle;verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Order&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ book: Book&lt;br&gt;+ status: OrderStatus&lt;br&gt;+ customerName: String&lt;br&gt;+ executionDate: LocalDate&lt;br&gt;+ price: int&lt;/p&gt;" vertex="1">
+          <mxGeometry height="120" width="230" x="580" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="Enum_BookStatus" parent="1" style="shape=rectangle;verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;&amp;lt;&amp;lt;enum&amp;gt;&amp;gt;&lt;br&gt;BookStatus&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;IN_STOCK&lt;br&gt;OUT_OF_STOCK&lt;/p&gt;" vertex="1">
+          <mxGeometry height="90" width="160" x="900" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Enum_OrderStatus" parent="1" style="shape=rectangle;verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;&amp;lt;&amp;lt;enum&amp;gt;&amp;gt;&lt;br&gt;OrderStatus&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;NEW&lt;br&gt;COMPLETED&lt;br&gt;CANCELED&lt;/p&gt;" vertex="1">
+          <mxGeometry height="110" width="160" x="900" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge_BS_Book" edge="1" parent="1" source="Class_BookStore" style="endArrow=none;html=1;endSize=12;startArrow=diamondThin;startSize=16;startFill=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="Class_Book">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="450" y="107" />
+              <mxPoint x="580" y="107" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Edge_BS_Order" edge="1" parent="1" style="endArrow=none;html=1;endSize=12;startArrow=diamondThin;startSize=16;startFill=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.75;exitDx=0;exitDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint x="430" y="290" as="sourcePoint" />
+            <mxPoint x="580" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Edge_Order_Book" edge="1" parent="1" source="Class_Order" style="endArrow=open;html=1;endSize=12;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="Class_Book">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge_Book_BookStatus" edge="1" parent="1" style="endArrow=open;html=1;endSize=12;dashed=1;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;exitDx=0;exitDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="810" y="84.91" as="sourcePoint" />
+            <mxPoint x="900" y="84.91" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Edge_Order_OrderStatus" edge="1" parent="1" style="endArrow=open;html=1;endSize=12;dashed=1;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=-0.012;entryY=0.538;entryDx=0;entryDy=0;entryPerimeter=0;" target="Enum_OrderStatus">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint x="810" y="329.92" as="sourcePoint" />
+            <mxPoint x="909.8400000000001" y="329.95000000000005" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
