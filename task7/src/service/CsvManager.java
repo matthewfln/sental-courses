@@ -14,17 +14,7 @@ public class CsvManager {
     public void exportBooks(BookStore store, String filePath) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
             for (Book book : store.getBooks()) {
-                writer.println(
-                        book.id + ";" +
-                                book.title + ";" +
-                                book.status + ";" +
-                                book.requestCount + ";" +
-                                book.hasRequest + ";" +
-                                book.price + ";" +
-                                book.publicationDate + ";" +
-                                book.arrivalDate + ";" +
-                                book.description
-                );
+                writer.println(book);
             }
             System.out.println("[Экспорт] Книги успешно выгружены в " + filePath);
         } catch (IOException e) {
@@ -66,14 +56,7 @@ public class CsvManager {
     public void exportOrders(BookStore store, String filePath) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
             for (Order order : store.getOrders()) {
-                writer.println(
-                        order.id + ";" +
-                                order.book.id + ";" +
-                                order.status + ";" +
-                                order.customerName + ";" +
-                                order.executionDate + ";" +
-                                order.price
-                );
+                writer.println(order);
             }
             System.out.println("[Экспорт] Заказы успешно выгружены в " + filePath);
         } catch (IOException e) {

@@ -30,13 +30,25 @@ public class AppController {
                 handleBooksMenu();
             } else if (choice == 2) {
                 handleOrdersMenu();
+            } else if (choice == 3) {
+                handleAnalytics();
             } else if (choice == 0) {
+                util.AppStateStorage.save(store);
                 view.printMessage("Завершение работы программы...");
                 break;
             } else {
                 view.printMessage("Ошибка: неверный пункт меню.");
             }
         }
+    }
+
+    private void handleAnalytics() {
+        view.printMessage("\n--- Аналитика магазина ---");
+        view.printMessage("Залежавшиеся книги на складе:");
+        store.printStaleBooks(LocalDate.now());
+
+        view.printMessage("\nСтатистика выполненных заказов за последний месяц:");
+        store.printCompletedOrdersStats(LocalDate.now().minusMonths(1), LocalDate.now());
     }
 
     private void handleBooksSort() {
@@ -79,6 +91,14 @@ public class AppController {
                 } else if (choice == 5) {
                     String path = view.getInputString("Введите путь к файлу для импорта: ");
                     csvManager.importBooks(store, path);
+                } else if (choice == 6) {
+                    String title = view.getInputString("Введите название книги: ");
+                    Book book = store.findBookByTitle(title);
+                    if (book != null) {
+                        store.printBookDescription(book);
+                    } else {
+                        view.printMessage("Книга не найдена.");
+                    }
                 } else if (choice == 0) {
                     break;
                 } else {
@@ -117,6 +137,14 @@ public class AppController {
                 } else if (choice == 4) {
                     String path = view.getInputString("Введите путь к файлу для импорта: ");
                     csvManager.importOrders(store, path);
+                } else if (choice == 5) {
+                    String title = view.getInputString("Введите название книги из заказа: ");
+                    Order order = store.findOrderByBookTitle(title);
+                    if (order != null) {
+                        store.printOrderDetails(order);
+                    } else {
+                        view.printMessage("Заказ не найден.");
+                    }
                 } else if (choice == 0) {
                     break;
                 } else {
