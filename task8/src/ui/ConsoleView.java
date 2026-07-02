@@ -12,14 +12,17 @@ public class ConsoleView {
         return INSTANCE;
     }
 
-    private ConsoleView() {
+    private ConsoleView()
+    {
     }
     // ----
+
 
     public void printMainMenu() {
         System.out.println("\n=== Главное меню ===");
         System.out.println("1. Управление книгами");
         System.out.println("2. Управление заказами");
+        System.out.println("3. Аналитика магазина");
         System.out.println("0. Выход");
         System.out.print("Выберите пункт: ");
     }
@@ -31,6 +34,7 @@ public class ConsoleView {
         System.out.println("3. Вывести список книг (Сортировка)");
         System.out.println("4. Экспорт книг в CSV");
         System.out.println("5. Импорт книг из CSV");
+        System.out.println("6. Посмотреть описание книги");
         System.out.println("0. Назад");
         System.out.print("Выберите пункт: ");
     }
@@ -50,6 +54,7 @@ public class ConsoleView {
         System.out.println("2. Завершить заказ");
         System.out.println("3. Экспорт заказов в CSV");
         System.out.println("4. Импорт заказов из CSV");
+        System.out.println("5. Посмотреть детали заказа");
         System.out.println("0. Назад");
         System.out.print("Выберите пункт: ");
     }
