@@ -7,37 +7,50 @@ import enums.OrderStatus;
 import enums.BookSortType;
 import enums.OrderSortType;
 import enums.RequestSortType;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.io.Serializable;
+import util.Config;
+import dao.BookDao;
+import dao.OrderDao;
+import util.DatabaseConnection;
+import java.sql.Connection;
+import java.sql.SQLException;
 
-public class BookStore {
+public class BookStore implements Serializable {
+    private static final long serialVersionUID = 1L;
     private final List<Book> books = new ArrayList<>();
     private final List<Order> orders = new ArrayList<>();
+    private transient final BookDao bookDao = new BookDao();
+    private transient final OrderDao orderDao = new OrderDao();
 
     public List<Book> getBooks() {
         return books;
     }
-
     public List<Order> getOrders() {
         return orders;
     }
 
     // --- Управление складом и книгами ---
-
     public void addBook(Book book) {
         Book existing = findBookByTitle(book.title);
         if (existing != null) {
             existing.status = BookStatus.IN_STOCK;
-            existing.requestCount = 0;
-            existing.hasRequest = false;
-            System.out.println("[Склад] Книга '" + book.title + "' снова в наличии. Запросы закрыты.");
+            if (Config.getInstance().isAutoFulfillRequests()) {
+                existing.requestCount = 0;
+                existing.hasRequest = false;
+                System.out.println("[Склад] Книга '" + book.title + "' снова в наличии. Запросы закрыты.");
+            } else {
+                System.out.println("[Склад] Книга '" + book.title + "' снова в наличии. Запросы не закрыты (согласно конфигурации).");
+            }
         } else {
             book.status = BookStatus.IN_STOCK;
-            book.requestCount = 0;
-            book.hasRequest = false;
+            if (Config.getInstance().isAutoFulfillRequests()) {
+                book.requestCount = 0;
+                book.hasRequest = false;
+            }
             books.add(book);
             System.out.println("[Склад] Новая книга добавлена: " + book.title);
         }
@@ -70,19 +83,11 @@ public class BookStore {
                 .orElse(null);
     }
 
-    // --- Сохранение/обновление (для CSV-импорта) ---
-
+    // --- Сохранение, обновление (для CSV-импорта) ---
     public void saveOrUpdateBook(Book newBook) {
         Book existing = findBookById(newBook.id);
         if (existing != null) {
-            existing.title = newBook.title;
-            existing.status = newBook.status;
-            existing.requestCount = newBook.requestCount;
-            existing.hasRequest = newBook.hasRequest;
-            existing.price = newBook.price;
-            existing.publicationDate = newBook.publicationDate;
-            existing.arrivalDate = newBook.arrivalDate;
-            existing.description = newBook.description;
+            existing.copyFrom(newBook);
         } else {
             books.add(newBook);
         }
@@ -91,11 +96,7 @@ public class BookStore {
     public void saveOrUpdateOrder(Order newOrder) {
         for (Order order : orders) {
             if (order.id == newOrder.id) {
-                order.book = newOrder.book;
-                order.status = newOrder.status;
-                order.customerName = newOrder.customerName;
-                order.executionDate = newOrder.executionDate;
-                order.price = newOrder.price;
+                order.copyFrom(newOrder);
                 return;
             }
         }
@@ -103,22 +104,55 @@ public class BookStore {
     }
 
     // --- Управление заказами ---
-
     public Order createOrder(Book book, String customerName) {
-        Book stored = findBookByTitle(book.title);
-        if (stored == null) {
-            stored = book;
-            books.add(stored);
+        Connection conn = DatabaseConnection.getInstance().getConnection();
+        Order order = null;
+
+        try {
+            conn.setAutoCommit(false);
+            System.out.println("[Транзакция] Начало оформления заказа для: " + customerName);
+
+            // Ищем или сохраняем книгу
+            Book stored = findBookByTitle(book.title);
+            if (stored == null) {
+                stored = book;
+                books.add(stored);
+                bookDao.save(stored);
+            }
+
+            // Если книги нет в наличии, оставляем запрос (меняем книгу в БД)
+            if (stored.status == BookStatus.OUT_OF_STOCK) {
+                stored.requestCount++;
+                stored.hasRequest = true;
+                bookDao.update(stored);
+                System.out.println("[Транзакция] Счетчик запросов книги увеличен до: " + stored.requestCount);
+            }
+
+            // Создаем заказ
+            int randomOrderId = (new java.util.Random()).nextInt(1000000);
+            order = new Order(randomOrderId, stored, customerName);
+            orders.add(order);
+            orderDao.save(order);
+
+            conn.commit();
+            System.out.println("[Транзакция] ✔ Заказ успешно оформлен и закоммичен в БД!");
+
+        } catch (Exception e) {
+            // При любой ошибке - откатываем назад
+            try {
+                System.out.println("[Транзакция] ❌ Произошла ошибка: " + e.getMessage() + ". Выполняется Rollback!");
+                conn.rollback();
+            } catch (SQLException ex) {
+                System.out.println("[Транзакция] Критическая ошибка при откате: " + ex.getMessage());
+            }
+        } finally {
+            try {
+                conn.setAutoCommit(true);
+            } catch (SQLException e) {
+                System.out.println("[Транзакция] Ошибка сброса autoCommit: " + e.getMessage());
+            }
         }
 
-        int randomOrderId = (new java.util.Random()).nextInt(1000000);
-        Order order = new Order(randomOrderId, stored, customerName);
-        orders.add(order);
-        System.out.println("[Магазин] Создан заказ на книгу: " + stored.title + " для " + customerName);
-
-        if (stored.status == BookStatus.OUT_OF_STOCK) {
-            requestBook(stored);
-        }
         return order;
     }
 
@@ -143,7 +177,6 @@ public class BookStore {
     }
 
     // --- Вывод с сортировкой ---
-
     public void printBooks(BookSortType sortType) {
         List<Book> sorted = new ArrayList<>(books);
 
@@ -201,7 +234,6 @@ public class BookStore {
     }
 
     // --- Аналитика ---
-
     public void printCompletedOrdersStats(LocalDate start, LocalDate end) {
         int count = 0;
         int sum = 0;
@@ -219,9 +251,10 @@ public class BookStore {
     }
 
     public void printStaleBooks(LocalDate currentDate) {
+        int staleMonths = Config.getInstance().getStaleMonths();
         for (Book b : books) {
             if (b.status == BookStatus.IN_STOCK && b.arrivalDate != null
-                    && b.arrivalDate.plusMonths(6).isBefore(currentDate)) {
+                    && b.arrivalDate.plusMonths(staleMonths).isBefore(currentDate)) {
                 System.out.println(b.title + " | Лежит на складе с " + b.arrivalDate);
             }
         }
