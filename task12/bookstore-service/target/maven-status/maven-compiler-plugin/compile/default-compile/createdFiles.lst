@@ -1,0 +1,7 @@
+dao\BookDao.class
+dao\OrderDao.class
+dao\GenericDao.class
+service\BookStore$1.class
+util\AppStateStorage.class
+service\BookStore.class
+service\CsvManager.class

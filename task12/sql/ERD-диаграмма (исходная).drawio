@@ -1,0 +1,73 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Страница-1" id="PVBkxNl1_XiKeAefh5Bm">
+    <mxGraphModel dx="981" dy="628" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="books_table" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" value="BOOKS" vertex="1">
+          <mxGeometry height="210" width="220" x="60" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="b_id" parent="books_table" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=1" value="PK | id: INT (SERIAL)" vertex="1">
+          <mxGeometry height="20" width="220" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="b_title" parent="books_table" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="title: VARCHAR(255)" vertex="1">
+          <mxGeometry height="20" width="220" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="b_status" parent="books_table" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="status: VARCHAR(50)" vertex="1">
+          <mxGeometry height="20" width="220" y="66" as="geometry" />
+        </mxCell>
+        <mxCell id="b_req_count" parent="books_table" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="request_count: INT" vertex="1">
+          <mxGeometry height="20" width="220" y="86" as="geometry" />
+        </mxCell>
+        <mxCell id="b_has_req" parent="books_table" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="has_request: BOOLEAN" vertex="1">
+          <mxGeometry height="20" width="220" y="106" as="geometry" />
+        </mxCell>
+        <mxCell id="b_price" parent="books_table" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="price: INT" vertex="1">
+          <mxGeometry height="20" width="220" y="126" as="geometry" />
+        </mxCell>
+        <mxCell id="b_pub_date" parent="books_table" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="publication_date: DATE" vertex="1">
+          <mxGeometry height="20" width="220" y="146" as="geometry" />
+        </mxCell>
+        <mxCell id="b_arr_date" parent="books_table" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="arrival_date: DATE" vertex="1">
+          <mxGeometry height="20" width="220" y="166" as="geometry" />
+        </mxCell>
+        <mxCell id="b_desc" parent="books_table" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="description: TEXT" vertex="1">
+          <mxGeometry height="20" width="220" y="186" as="geometry" />
+        </mxCell>
+        <mxCell id="orders_table" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" value="ORDERS" vertex="1">
+          <mxGeometry height="150" width="220" x="420" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="o_id" parent="orders_table" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=1" value="PK | id: INT (SERIAL)" vertex="1">
+          <mxGeometry height="20" width="220" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="o_book_id" parent="orders_table" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=1;fontColor=#0000ee" value="FK | book_id: INT" vertex="1">
+          <mxGeometry height="20" width="220" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="o_status" parent="orders_table" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="status: VARCHAR(50)" vertex="1">
+          <mxGeometry height="20" width="220" y="66" as="geometry" />
+        </mxCell>
+        <mxCell id="o_customer" parent="orders_table" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="customer_name: VARCHAR(255)" vertex="1">
+          <mxGeometry height="20" width="220" y="86" as="geometry" />
+        </mxCell>
+        <mxCell id="o_exec_date" parent="orders_table" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="execution_date: DATE" vertex="1">
+          <mxGeometry height="20" width="220" y="106" as="geometry" />
+        </mxCell>
+        <mxCell id="o_price" parent="orders_table" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="price: INT" vertex="1">
+          <mxGeometry height="20" width="220" y="126" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_books_orders" edge="1" parent="1" source="b_id" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;endArrow=ERmany;endFill=0;startArrow=ERone;startFill=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="o_book_id">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="-a53NS5YEtm0Nxliv5-B-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="270" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="-a53NS5YEtm0Nxliv5-B-2" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div&gt;N&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="370" y="106" as="geometry" />
+        </mxCell>
+        <mxCell id="-a53NS5YEtm0Nxliv5-B-3" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="одна книга может быть в нескольких заказах&lt;br&gt;1 заказ - 1 книга" vertex="1">
+          <mxGeometry height="30" width="590" y="310" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
