@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="9.3">
+<file name="C:\Users\matth\Desktop\Практика\task13\bookstore-model\src\main\java\enums\BookSortType.java">
+</file>
+<file name="C:\Users\matth\Desktop\Практика\task13\bookstore-model\src\main\java\enums\BookStatus.java">
+</file>
+<file name="C:\Users\matth\Desktop\Практика\task13\bookstore-model\src\main\java\enums\OrderSortType.java">
+</file>
+<file name="C:\Users\matth\Desktop\Практика\task13\bookstore-model\src\main\java\enums\OrderStatus.java">
+</file>
+<file name="C:\Users\matth\Desktop\Практика\task13\bookstore-model\src\main\java\enums\RequestSortType.java">
+</file>
+<file name="C:\Users\matth\Desktop\Практика\task13\bookstore-model\src\main\java\model\Book.java">
+</file>
+<file name="C:\Users\matth\Desktop\Практика\task13\bookstore-model\src\main\java\model\Order.java">
+</file>
+</checkstyle>

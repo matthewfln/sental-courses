@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="9.3">
+<file name="C:\Users\matth\Desktop\Практика\task13\bookstore-common\src\main\java\config\ConfigProperty.java">
+</file>
+<file name="C:\Users\matth\Desktop\Практика\task13\bookstore-common\src\main\java\config\Configurator.java">
+</file>
+<file name="C:\Users\matth\Desktop\Практика\task13\bookstore-common\src\main\java\config\PropertyType.java">
+</file>
+<file name="C:\Users\matth\Desktop\Практика\task13\bookstore-common\src\main\java\di\Inject.java">
+</file>
+<file name="C:\Users\matth\Desktop\Практика\task13\bookstore-common\src\main\java\di\Injector.java">
+</file>
+<file name="C:\Users\matth\Desktop\Практика\task13\bookstore-common\src\main\java\util\Config.java">
+</file>
+<file name="C:\Users\matth\Desktop\Практика\task13\bookstore-common\src\main\java\util\DatabaseConnection.java">
+</file>
+</checkstyle>
