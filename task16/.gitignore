@@ -1,0 +1,47 @@
+### Maven ###
+target/
+*.ser
+*.jar
+*.war
+*.ear
+*.class
+
+### Application Runtime Files (Логи и состояние программы) ###
+logs/
+*.log
+app_state.dat
+
+### IntelliJ IDEA ###
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Mac OS / Windows ###
+.DS_Store
+Thumbs.db
