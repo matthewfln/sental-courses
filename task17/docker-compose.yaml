@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  # Сервис базы данных PostgreSQL
+  bookstore-db:
+    image: postgres:15-alpine
+    container_name: bookstore_postgres_db
+    # Используем хост-сеть, чтобы приложение видело БД по адресу localhost:5432
+    network_mode: "host"
+    environment:
+      POSTGRES_DB: bookstore
+      POSTGRES_USER: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      # Постоянное хранилище (Volume), чтобы данные не удалялись при перезапуске
+      - pgdata:/var/lib/postgresql/data
+    restart: always
+
+  # Сервис Java Web-приложения
+  bookstore-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bookstore_java_app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - bookstore-db
+    restart: on-failure
+
+volumes:
+  pgdata:
