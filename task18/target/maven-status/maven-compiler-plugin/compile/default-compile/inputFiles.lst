@@ -1,0 +1,11 @@
+C:\Users\matth\Desktop\Практика\task18\src\main\java\com\senlabank\consumer\TransferConsumer.java
+C:\Users\matth\Desktop\Практика\task18\src\main\java\com\senlabank\model\Account.java
+C:\Users\matth\Desktop\Практика\task18\src\main\java\com\senlabank\model\Transfer.java
+C:\Users\matth\Desktop\Практика\task18\src\main\java\com\senlabank\repository\AccountRepository.java
+C:\Users\matth\Desktop\Практика\task18\src\main\java\com\senlabank\BankSystemTestApplication.java
+C:\Users\matth\Desktop\Практика\task18\src\main\java\com\senlabank\config\KafkaConfig.java
+C:\Users\matth\Desktop\Практика\task18\src\main\java\com\senlabank\producer\TransferProducer.java
+C:\Users\matth\Desktop\Практика\task18\src\main\java\com\senlabank\service\TransferProcessor.java
+C:\Users\matth\Desktop\Практика\task18\src\main\java\com\senlabank\service\TransferProcessorImpl.java
+C:\Users\matth\Desktop\Практика\task18\src\main\java\com\senlabank\model\TransferStatus.java
+C:\Users\matth\Desktop\Практика\task18\src\main\java\com\senlabank\repository\TransferRepository.java

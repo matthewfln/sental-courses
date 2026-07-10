@@ -1,0 +1,11 @@
+com\senlabank\config\KafkaConfig.class
+com\senlabank\producer\TransferProducer.class
+com\senlabank\model\Account.class
+com\senlabank\consumer\TransferConsumer.class
+com\senlabank\model\Transfer.class
+com\senlabank\model\TransferStatus.class
+com\senlabank\BankSystemTestApplication.class
+com\senlabank\repository\TransferRepository.class
+com\senlabank\service\TransferProcessorImpl.class
+com\senlabank\service\TransferProcessor.class
+com\senlabank\repository\AccountRepository.class
