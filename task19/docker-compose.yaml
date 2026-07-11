@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  # Сервис базы данных PostgreSQL
+  bookstore-db:
+    image: postgres:15-alpine
+    container_name: bookstore_postgres_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: bookstore
+      POSTGRES_USER: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: always
+
+  # Сервис Java Web-приложения
+  bookstore-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bookstore_java_app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - bookstore-db
+    restart: on-failure
+
+volumes:
+  pgdata:
